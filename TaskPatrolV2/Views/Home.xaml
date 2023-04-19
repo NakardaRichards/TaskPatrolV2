@@ -1,0 +1,73 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaskPatrolV2.Views.Home"
+             xmlns:viewModels="clr-namespace:TaskPatrolV2.ViewModels;assembly=TaskPatrolV2"
+             xmlns:searchHandlers="clr-namespace:TaskPatrolV2.SearchHandlers"
+             x:DataType="viewModels:HomeViewModel"
+             xmlns:models="clr-namespace:TaskPatrolV2.Models"
+             Title="Home">
+
+    <Shell.SearchHandler>
+        <searchHandlers:TaskSearchHandler 
+            Placeholder="Search Task"
+            ShowsResults="True"
+            QueryIcon="search"
+            ClearIcon="clear"
+            NavigationRoute="AddTaskPage"
+            Tasks="{x:Static viewModels:HomeViewModel.TasksListForSearch}">
+            <searchHandlers:TaskSearchHandler.ItemTemplate>
+                <DataTemplate x:DataType="models:MyTasks">
+                    <Grid Margin="5" RowDefinitions="Auto" ColumnDefinitions="40,Auto">
+                        <Image Grid.Row="0" Grid.Column="0" Source="user" HeightRequest="35" WidthRequest="35" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding FullTask}" FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </searchHandlers:TaskSearchHandler.ItemTemplate>
+        </searchHandlers:TaskSearchHandler>
+    </Shell.SearchHandler>
+    <ScrollView>
+        
+  
+    <StackLayout Margin="10">
+        <Label  Text="Task List" FontSize="28"/>
+        <StackLayout Orientation="Horizontal" Margin="0,10">
+            <Label Text="Active Tasks: " VerticalOptions="Center" />
+            <Label Text="{Binding TaskCount}" VerticalOptions="Center" FontAttributes="Bold" />
+        </StackLayout>
+
+
+            <Button Text="Add Task" Command="{Binding AddUpdateTaskCommand}" HorizontalOptions="EndAndExpand" BackgroundColor="#007AFF"
+    TextColor="White" />
+
+        <CollectionView ItemsSource="{Binding Tasks}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:MyTasks">
+                    
+
+                        <Frame Margin="10" Padding="10">
+                            <VerticalStackLayout>
+                                <HorizontalStackLayout Spacing="10">
+
+                                    <Label Text="{Binding Description}" FontSize="14" FontAttributes="Bold" />
+
+                                </HorizontalStackLayout>
+                                <Label Text="{Binding Date,StringFormat='{0:d}'}"  />
+                                <Label Text="{Binding Time}" />
+                                <Label Text="{Binding Category}" />
+
+                                <Label Text="{Binding Countdown, StringFormat='{0:%d} days, {0:%h} hours, {0:%m} minutes, {0:%s} seconds'}"  FontAttributes="Bold"  />
+
+                            </VerticalStackLayout>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:HomeViewModel}},Path=DisplayActionCommand}"
+                                          CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+             
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </StackLayout>
+    </ScrollView>
+</ContentPage>

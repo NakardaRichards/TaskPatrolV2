@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaskPatrolV2.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Image
+                Source="task_patrol_transparent.png"
+                SemanticProperties.Description="Image by Nakarda Richards"
+                HeightRequest="300"
+                HorizontalOptions="Center" />
+
+
+
+            <Button
+    x:Name="Go"
+    Text="Launch App"
+    SemanticProperties.Hint="Goes to tasks."
+    Clicked="OnGoClicked"
+    BackgroundColor="#007AFF"
+    TextColor="White"
+    CornerRadius="10"
+    Padding="15, 10"
+    HorizontalOptions="CenterAndExpand">
+              
+            </Button>
+
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

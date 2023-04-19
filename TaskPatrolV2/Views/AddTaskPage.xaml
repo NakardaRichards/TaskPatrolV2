@@ -1,0 +1,65 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaskPatrolV2.Views.AddTaskPage"
+             xmlns:viewModels="clr-namespace:TaskPatrolV2.ViewModels;assembly=TaskPatrolV2"
+             Title="Add Tasks">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="SlateGray" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Margin="10" Spacing="15">
+        <VerticalStackLayout>
+            <Label Text="Description"  />
+            <Entry Text="{Binding TaskDetail.Description}" Placeholder="Description" />
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+
+
+
+        <VerticalStackLayout>
+            <Label Text="Date" />
+            <DatePicker Date="{Binding TaskDetail.Date }" />
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+
+
+        <VerticalStackLayout>
+            <Label Text="Time" />
+            <TimePicker Time="{Binding TaskDetail.Time}" />
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+
+
+
+        <VerticalStackLayout>
+
+            <Label Text="Category" />
+            <Picker SelectedItem="{Binding TaskDetail.Category}">
+                <Picker.Items>
+                    <x:String>Personal</x:String>
+                    <x:String>Work</x:String>
+                    <x:String>School</x:String>
+                    <x:String>Other</x:String>
+                </Picker.Items>
+            </Picker>
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+
+
+        <StackLayout Orientation="Horizontal" >
+            <Button Text="Save" Command="{Binding AddUpdateTaskCommand}" BackgroundColor="#007AFF"
+        TextColor="White"/>
+            <Button Text="Cancel" Command="{Binding CancelCommand}" BackgroundColor="#007AFF" Margin="10,0,30,0"
+        TextColor="White"/>
+        </StackLayout>
+
+    </StackLayout>
+
+   
+
+</ContentPage>
